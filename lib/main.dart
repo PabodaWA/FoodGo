@@ -92,11 +92,11 @@ class FoodGoApp extends StatelessWidget {
                        crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                       Image.asset(
-                      'assets/images/burgur.jpg',
-                      height: 180,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
-                    ),
+                        'assets/images/burger.jpg',
+                        height: 180,
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
 
                     const Padding(
                       padding: EdgeInsets.all(12),
@@ -105,6 +105,17 @@ class FoodGoApp extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      child: Text(
+                        'Juicy grilled chicken burger with fresh lettuce, tomato, cheddar cheese, and a soft toasted bun.',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black54,
                         ),
                       ),
                     ),
@@ -148,11 +159,11 @@ Card(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Image.asset(
-        'assets/images/cheese pizza.jpg',
-        height: 180,
-        width: double.infinity,
-        fit: BoxFit.cover,
-      ),
+        'assets/images/cheese_pizza.jpg',
+          height: 180,
+          width: double.infinity,
+          fit: BoxFit.cover,
+          ),
 
       const Padding(
         padding: EdgeInsets.all(12),
@@ -161,6 +172,17 @@ Card(
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+
+      const Padding(
+        padding: EdgeInsets.symmetric(horizontal: 12),
+        child: Text(
+          'Classic cheesy pizza with a crispy crust, tangy tomato sauce, and melted mozzarella on top.',
+          style: TextStyle(
+            fontSize: 14,
+            color: Colors.black54,
           ),
         ),
       ),
@@ -196,6 +218,71 @@ Card(
     ],
   ),
 ),
+
+              const SizedBox(height: 15),
+
+              Card(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/images/cheese_kottu.jpg',
+                      height: 180,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+
+                    const Padding(
+                      padding: EdgeInsets.all(12),
+                      child: Text(
+                        'Cheese Kottu',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 12),
+                      child: Text(
+                        'Spicy kottu roti topped with melted cheese, fresh vegetables, and a rich savory sauce.',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.black54,
+                        ),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(12, 12, 12, 12),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                            size: 20,
+                          ),
+
+                          const SizedBox(width: 5),
+
+                          const Text('4.9'),
+
+                          const Spacer(),
+
+                          const Text(
+                            '\$9.99',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
                ),
               ),
