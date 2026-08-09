@@ -20,6 +20,10 @@ class FoodGoApp extends StatelessWidget {
   }
 }
 
+// ===============================
+// HOME SCREEN
+// ===============================
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -33,6 +37,7 @@ class HomeScreen extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+
         actions: [
           IconButton(
             onPressed: () {},
@@ -49,7 +54,10 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
+              // ===============================
               // Welcome text
+              // ===============================
+
               const Text(
                 'What would you like to eat?',
                 style: TextStyle(
@@ -60,11 +68,15 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 15),
 
+              // ===============================
               // Search bar
+              // ===============================
+
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Search for food...',
                   prefixIcon: const Icon(Icons.search),
+
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -73,7 +85,10 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              // Categories title
+              // ===============================
+              // Categories
+              // ===============================
+
               const Text(
                 'Categories',
                 style: TextStyle(
@@ -84,23 +99,42 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 15),
 
-              // Categories
               SizedBox(
                 height: 100,
+
                 child: ListView(
                   scrollDirection: Axis.horizontal,
+
                   children: [
-                    categoryItem(Icons.lunch_dining, 'Burgers'),
-                    categoryItem(Icons.local_pizza, 'Pizza'),
-                    categoryItem(Icons.ramen_dining, 'Noodles'),
-                    categoryItem(Icons.local_cafe, 'Drinks'),
+                    categoryItem(
+                      Icons.lunch_dining,
+                      'Burgers',
+                    ),
+
+                    categoryItem(
+                      Icons.local_pizza,
+                      'Pizza',
+                    ),
+
+                    categoryItem(
+                      Icons.ramen_dining,
+                      'Noodles',
+                    ),
+
+                    categoryItem(
+                      Icons.local_cafe,
+                      'Drinks',
+                    ),
                   ],
                 ),
               ),
 
               const SizedBox(height: 25),
 
-              // Popular food
+              // ===============================
+              // Popular Food
+              // ===============================
+
               const Text(
                 'Popular Food',
                 style: TextStyle(
@@ -111,29 +145,36 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 15),
 
+              // ===============================
               // Food cards
+              // ===============================
+
               foodCard(
+                context,
                 'Chicken Burger',
                 'Rs. 850',
                 'assets/images/burger.jpg',
               ),
 
               foodCard(
+                context,
                 'Cheese Pizza',
                 'Rs. 1200',
                 'assets/images/cheese_pizza.jpg',
               ),
 
               foodCard(
+                context,
                 'Cheese Kottu',
                 'Rs. 650',
                 'assets/images/cheese_kottu.jpg',
               ),
 
               foodCard(
+                context,
                 'Fried Rice',
                 'Rs. 500',
-                'assets/images/cheese_kottu.jpg',
+                'assets/images/Chicken_Fried_Rice.jpg',
               ),
             ],
           ),
@@ -141,43 +182,79 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  // Category widget
-  Widget categoryItem(IconData icon, String name) {
-    return Container(
-      width: 90,
-      margin: const EdgeInsets.only(right: 12),
-      child: Column(
-        children: [
-          CircleAvatar(
-            radius: 30,
-            child: Icon(
-              icon,
-              size: 30,
-            ),
+// ===============================
+// CATEGORY WIDGET
+// ===============================
+
+Widget categoryItem(
+  IconData icon,
+  String name,
+) {
+  return Container(
+    width: 90,
+
+    margin: const EdgeInsets.only(right: 12),
+
+    child: Column(
+      children: [
+
+        CircleAvatar(
+          radius: 30,
+
+          child: Icon(
+            icon,
+            size: 30,
           ),
+        ),
 
-          const SizedBox(height: 8),
+        const SizedBox(height: 8),
 
-          Text(name),
-        ],
-      ),
-    );
-  }
+        Text(name),
+      ],
+    ),
+  );
+}
 
-  // Food card widget
-  Widget foodCard(
-    String name,
-    String price,
-    String imagePath,
-  ) {
-    return Card(
+// ===============================
+// FOOD CARD WIDGET
+// ===============================
+
+Widget foodCard(
+  BuildContext context,
+  String name,
+  String price,
+  String imagePath,
+) {
+  return GestureDetector(
+
+    // When user taps the food card
+    onTap: () {
+
+      Navigator.push(
+        context,
+
+        MaterialPageRoute(
+          builder: (context) => FoodDetailsScreen(
+            name: name,
+            price: price,
+            imagePath: imagePath,
+          ),
+        ),
+      );
+    },
+
+    child: Card(
       margin: const EdgeInsets.only(bottom: 15),
 
       child: Row(
         children: [
 
+          // ===============================
           // Food image
+          // ===============================
+
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
 
@@ -191,14 +268,19 @@ class HomeScreen extends StatelessWidget {
 
           const SizedBox(width: 15),
 
+          // ===============================
           // Food information
+          // ===============================
+
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+
               children: [
 
                 Text(
                   name,
+
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -209,6 +291,7 @@ class HomeScreen extends StatelessWidget {
 
                 Text(
                   price,
+
                   style: const TextStyle(
                     fontSize: 16,
                   ),
@@ -218,12 +301,150 @@ class HomeScreen extends StatelessWidget {
 
                 ElevatedButton(
                   onPressed: () {},
-                  child: const Text('Add to Cart'),
+
+                  child: const Text(
+                    'Add to Cart',
+                  ),
                 ),
               ],
             ),
           ),
         ],
+      ),
+    ),
+  );
+}
+
+// ===============================
+// FOOD DETAILS SCREEN
+// ===============================
+
+class FoodDetailsScreen extends StatelessWidget {
+
+  final String name;
+  final String price;
+  final String imagePath;
+
+  const FoodDetailsScreen({
+    super.key,
+    required this.name,
+    required this.price,
+    required this.imagePath,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+
+      // ===============================
+      // App bar
+      // ===============================
+
+      appBar: AppBar(
+        title: Text(name),
+      ),
+
+      // ===============================
+      // Body
+      // ===============================
+
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+
+          children: [
+
+            // ===============================
+            // Food image
+            // ===============================
+
+            Image.asset(
+              imagePath,
+
+              width: double.infinity,
+              height: 300,
+
+              fit: BoxFit.cover,
+            ),
+
+            const SizedBox(height: 20),
+
+            // ===============================
+            // Food information
+            // ===============================
+
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+
+                children: [
+
+                  // Food name
+
+                  Text(
+                    name,
+
+                    style: const TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 10),
+
+                  // Price
+
+                  Text(
+                    price,
+
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+
+                  const SizedBox(height: 20),
+
+                  // Description
+
+                  const Text(
+                    'Delicious and freshly prepared food. '
+                    'Order now and enjoy your meal!',
+
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+
+                  const SizedBox(height: 30),
+
+                  // ===============================
+                  // Add to cart button
+                  // ===============================
+
+                  SizedBox(
+                    width: double.infinity,
+
+                    child: ElevatedButton(
+                      onPressed: () {},
+
+                      child: const Text(
+                        'Add to Cart',
+
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
