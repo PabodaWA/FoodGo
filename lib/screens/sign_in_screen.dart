@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
+import 'sign_up_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -73,6 +74,31 @@ class SignInScreen extends StatelessWidget {
                 ),
               ),
             ),
+
+            const SizedBox(height: 20),
+
+Row(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    const Text(
+      "Don't have an account?",
+    ),
+
+    TextButton(
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const SignUpScreen(),
+          ),
+        );
+      },
+      child: const Text(
+        'Create Account',
+      ),
+    ),
+  ],
+),
           ],
         ),
       ),
